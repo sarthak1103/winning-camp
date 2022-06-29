@@ -1,0 +1,101 @@
+{% load static %}
+<html>
+<head>
+<title>Customer form </title>
+<script type="text/javascript" src="{% static 'js/custform.js' %}"> </script>  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" href="{% static 'css/custform.css' %}"/>
+</head>
+
+<body topmargin= "100">
+	<nav id="navbar">
+		<div id="logo">
+			<img src="{% static 'images/logo.jfif'%}"/> 
+	
+		</div>
+		<ul>
+		  <div>
+			<li class="item" style="float:right"> <a href='/'; > Home</a>
+		  </div>
+		 
+		 <li>  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbspThe Sparks Bank</li>
+		 
+			
+		   
+		</ul>
+	</nav>
+	</body>
+	
+
+<center>
+<form name="formal" id="cform" method="POST"> 
+<h1><font face="<Lucida Handwriting" size=+6 color= "red">FILL CUSTOMER DETAILS</font> </h1>
+<table cellspacing="15">
+<tr>
+<td>
+<font  size=+3> <b> Customer Name</b>
+</td>
+<td>
+<input id = "cust" size=+50 type="text" name="CustomerName">
+</td>
+</tr>
+<tr>
+<td>
+<font size=+3> <b>Email Id</b>
+</td>
+<td>
+<input id = "email" size=+50 type="email" name="EmailId">
+</td>
+</tr>
+<tr>
+<td>
+<font size=+3> <b> Account No. </b>
+</td>
+<td>
+<input id = "acc" size=+50 type="number" name="AccountNo">
+</td>
+</tr>
+<tr>
+<td>
+<font size=+3> <b> Balance </b>
+</td>
+<td>
+<input id= "balance"size=+50 type="number" name="Balance">
+</td>
+</tr>
+<tbody id="cfdetails"> </tbody>
+</table>
+<br>
+<input id="submit_btn" type="button" name= "submit" value ="Submit" onClick="validate(this.form)">
+</form>
+</center>
+
+</body>
+<script type="text/javascript">
+
+    $('#submit_btn').on('click',function(e){
+                e.preventDefault();
+
+
+alert("form submitted");
+	   			$.ajax({
+	   				type:'POST',
+	   				url:'/customerForm/',
+	   				data:{
+	   					cust:$('#cust').val(),
+	   					email:$('#email').val(),
+	   					acc:$('#acc').val(),
+	   					balance:$('#balance').val(),
+	   					},
+	   					dataType: 'json',
+	   					success:function(){
+	   					console.log('HEREE')
+								alert("form submitted");
+	   					}
+	   					});
+	   					})
+
+</script>
+
+
+</html

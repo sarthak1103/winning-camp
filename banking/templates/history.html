@@ -1,0 +1,123 @@
+{% load static%}
+<html>
+<head>
+<title>Customer form </title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="{% static 'css/custform.css' %}">
+<style>
+
+    table {
+      font-family: arial, sans-serif;
+      color: black;
+      border-collapse: collapse;
+      width: 100%;
+      background-color:black;
+text-align:center;
+font-family:"comic sans ms";
+width: 80%;
+height:200px;
+border-collapse:collapse;
+border-radius:0px;
+overflow-y:scroll;
+    }
+    
+    td {
+      border: 3px solid black;
+       background-color: rgb(141, 202, 238);  
+      text-align: center;
+      padding: 8px;
+    }
+    th {
+      border: 3px solid black;
+      background-color: rgb(147, 148, 143);
+      text-align: center;
+      padding: 8px;
+}
+
+    
+    tr:nth-child(even) {background-color: #f2f2f2;}
+    tr:hover {background-color: #ddd;}
+      
+    
+    </style>
+</head>
+<body>
+  <nav id="navbar">
+    <div id="logo">
+        <img src="{% static 'images/logo.jfif'%}"/> 
+
+    </div>
+    <ul>
+      <div>
+        <li class="item" style="float:right"> <a href='/'; > Home</a>
+      </div>
+     
+     <li>  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbspThe Sparks Bank</li>
+     
+        
+       
+    </ul>
+</nav>
+</body>
+
+<center>
+<form name="formal" >
+<h1><font face="<Lucida Handwriting" size=+6 color= "black">Transaction Details</font> </h1>
+</form>
+
+<table id="transfer_history" >
+    <tr>
+      <th>payer</th>
+      <th>payee</th>
+      <th>amount</th>
+    </tr>
+      <tbody id="table_body"> </tbody>
+  </table>
+
+  </center>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+
+   $(document).ready(function(e){
+                // e.preventDefault();
+                
+                $.ajax({
+                    type:'POST',
+                    url:'/transfer/',
+                    data:{
+                        // transaction:$('#tform').val(),
+                        },
+                        dataType: 'json ',
+                        })
+                        .done(function(data) {
+                          
+                     data_out = data;
+                     console.log('data')
+                     console.log(data_out)
+                     var transaction =data_out["transaction"]
+                     var no_of_transaction=data_out["transaction"].length;
+                     for (var i=0; i<no_of_transaction; i++){
+                       if(transaction[i]["payer"]==null){
+
+                       }
+
+                      else{
+                        var row="<tr><td>"+transaction[i]["payer"]+"</td><td>"+transaction[i]["payee"]+"</td><td>"+transaction[i]["amount"]+"</td></tr>"
+
+
+                        $('#table_body').append(row)
+                        
+
+                      }
+                     }
+                        $('#transfer_history').show()
+                        
+                        })
+                        });
+
+
+</script>
+</html>
+

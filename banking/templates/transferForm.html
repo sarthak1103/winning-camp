@@ -1,0 +1,89 @@
+{%load static%}
+<html>
+<head>
+<title>Customer form </title>
+<script type="text/javascript" src="{% static 'js/transform.js'%}"></script>  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" href="{% static 'css/custform.css'%}"/>
+</head>
+
+<body topmargin= "100">
+	<nav id="navbar">
+		<div id="logo">
+			<img src="{% static 'images/logo.jfif'%}"/> 
+	
+		</div>
+		<ul>
+		  <div>
+			<li class="item" style="float:right"> <a href='/'; > Home</a>
+		  </div>
+		 
+		 <li>  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbspThe Sparks Bank</li>
+		 
+			
+		   
+		</ul>
+	</nav>
+	</body>
+	
+<center>
+<form name="formal" id= tform method="POST">
+
+<h1><font face="<Lucida Handwriting" size=+8 color= "Black">Transaction Form</font> </h1>
+<table cellspacing="15">
+<tr>
+<td>
+<font  size=+3> <b>Payer Account Number</b>
+</td>
+<td>
+<input id ="payer"size=+50 type="number" name="PayerNo">
+</td>
+</tr>
+<tr>
+<td>
+<font size=+3> <b> Payee Account No. </b>
+</td>
+<td>
+<input id= "payee" size=+50 type="number" name="PayeeNo">
+</td>
+</tr>
+<tr>
+<td>
+<font size=+3> <b> Amount </b>
+</td>
+<td>
+<input id= "amount" size=+50 type="number" name="Amount">
+</td>
+</tr>
+</table>
+<br>
+<input id="sbt_btn" type="button" name= "submit" value ="Send Money" onClick="validate(this.form)">
+</form>
+</center>
+
+</body>
+<script type="text/javascript">
+
+    $('#sbt_btn').on('click',function(e){
+                e.preventDefault();
+
+
+alert("form submitted");
+	   			$.ajax({
+	   				type:'POST',
+	   				url:'/transaction/',
+	   				data:{
+	   					payer:$('#payer').val(),
+	   					payee:$('#payee').val(),
+	   					amount:$('#amount').val(),
+	   					},
+	   					dataType: 'json',
+	   					success:function(){
+	   					console.log('HEREE')
+								alert("form submitted");
+	   					}
+	   					});
+	   					})
+
+</script>
+</html

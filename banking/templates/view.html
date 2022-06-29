@@ -1,0 +1,116 @@
+{% load static %}
+<html>
+<head>
+<title>Customer form </title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="{% static 'css/custform.css' %}">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<style>
+    table {
+      font-family: arial, sans-serif;
+      color: black;
+      border-collapse: collapse;
+      width: 100%;
+      background-color:black;
+text-align:center;
+font-family:"comic sans ms";
+width: 80%;
+height:200px;
+border-collapse:collapse;
+border-radius:0px;
+overflow-y:scroll;
+    }
+    
+    td {
+      border: 3px solid black;
+       background-color: rgb(141, 202, 238);  
+      text-align: center;
+      padding: 8px;
+      
+    }
+    th {
+      border: 3px solid black;
+      background-color: rgb(147, 148, 143);
+      text-align: center;
+      padding: 8px;
+    }
+    
+   
+    </style>
+    
+</head>
+
+<body topmargin= "100">
+  <nav id="navbar">
+    <div id="logo">
+        <img src="{% static 'images/logo.jfif'%}"/> 
+
+    </div>
+    <ul>
+      <div>
+        <li class="item" style="float:right"> <a href='/'; > Home</a>
+      </div>
+     
+     <li>  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbspThe Sparks Bank</li>
+     
+        
+       
+    </ul>
+</nav>
+</body>
+<center>
+<form name="formal">
+<h1><font face="<Lucida Handwriting" size=+8 color= "black">Customer's List</font> </h1>
+</form>
+<table id="customer_details" >
+    <tr>
+      <th>name </th>
+      <th>email </th>
+      <th>AccountNo</th>
+      <th> balance</th>
+    </tr>
+      <tbody id="cdetails"> </tbody>
+  </table>
+</center>
+</body>
+
+
+<script type="text/javascript">
+
+    $(document).ready(function(e){
+                // e.preventDefault();
+                $.ajax({
+                    type:'POST',
+                    url:'/details/',
+                    data:{
+                        // details:$('#cform').val(),
+                        },
+                        dataType: 'json',
+                        })
+                        .done(function(data) {
+                     data_out = data;
+                     console.log('data')
+                     console.log(data_out)
+                     var details =data_out["details"]
+                     var no_of_details=data_out["details"].length
+                     for (var i=0; i<no_of_details; i++){
+                      if (details[i]["name"]== null){
+                           
+                      }
+                      else{
+                           var row="<tr><td>"+details[i]["name"]+"</td><td>"+details[i]["email"]+"</td><td>"+details[i]["account_no"]+"</td><td>"+details[i]["balance"]+ "</td></tr>"
+
+                          $('#cdetails').append(row)
+
+                      }
+                      }
+                        $('#customer_details').show()
+                        })
+                        });
+
+
+</script>
+
+</html>

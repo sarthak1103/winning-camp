@@ -1,0 +1,43 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank</title>
+    <link rel="stylesheet" href="{% static 'css/base.css'%}"/>
+</head>
+<body id="cover">
+    <nav id="navbar">
+        <div id="logo">
+            <img src="{% static 'images/logo.jfif'%}"/> 
+        </div>
+        <ul>
+            <li class="item"> <a href='/';>Home</a></li> <br>
+            <li class="item"> <a href='customerForm/';>AddCustomer</a></li> 
+            <li class="item"> <a href='view/';>ViewCustomer</a></li> 
+		    <li class="item" > <a href='transferForm/';>Transfer</a></li>
+           <li class="item"> <a href='history/';>TransferHistory</a></li>
+        </ul>
+    </nav>
+    
+    <h1 class="h-primary center"><p style="text-align:right;"> <marquee width="60%" direction="left" height="100px">Welcome To The Sparks Bank</p></h1> </marquee> 
+    <center>
+        <font face="verdana" color: yellow>
+        <!-- <h4><span>Our Vision Statement</span></h4> -->
+        </font>
+        </center>
+        
+        <!-- <p class="para">A world of enabled and connected little minds, building future.</p> -->
+        
+        
+        
+        <div class="column">
+            <font face="verdana"><center><span><h4 style="font-size:30px;"> Our Mission Statement</h4></center></span></font>
+        
+        <p class="para"  style="text-align:center;">To inspire students, help them innovate and let them integrate to build the next generation humankind.</p>
+        <!-- <h4>Inspire</h4> -->
+        <!-- <p>To inspire, motivate and encourage students to learn, create and help build a better society.</p> -->
+        </div>
+        </body>
+</html>
